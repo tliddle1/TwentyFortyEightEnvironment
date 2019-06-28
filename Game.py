@@ -49,6 +49,9 @@ class Game():
         else:
             return False
 
+    def possible_moves(self):
+        return logic.possible_actions(self.matrix)
+        
 game = Game()
 game.print_matrix()
 while not game.isGameOver():
