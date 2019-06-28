@@ -19,7 +19,7 @@ class Game():
         self.matrix = logic.add_two(self.matrix)
         
 
-    def print_matrix(self, matrix):
+    def print_matrix(self):
         print(self.matrix[0])
         print(self.matrix[1])
         print(self.matrix[2])
@@ -40,6 +40,8 @@ class Game():
             index = (self.gen(), self.gen())
         self.matrix[index[0]][index[1]] = 2
 
+    def score(self):
+        return logic.score(self.matrix)
 
 game = Game()
 while(logic.game_state(game.matrix) != 'lose'):
@@ -55,5 +57,5 @@ while(logic.game_state(game.matrix) != 'lose'):
     #moves = logic.possible_actions(game.matrix)
     #action = random.randint(0, len(moves)-1)
     #game.take_action(moves[action])
-    game.print_matrix(game.matrix)
-print(logic.score(game.matrix))
+    game.print_matrix()
+print(game.score())
