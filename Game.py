@@ -44,6 +44,7 @@ class Game():
         return logic.score(self.matrix)
 
 game = Game()
+game.print_matrix()
 while(logic.game_state(game.matrix) != 'lose'):
     move = input()
     if (move == "w"):
