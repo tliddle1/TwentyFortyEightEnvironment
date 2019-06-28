@@ -42,10 +42,16 @@ class Game():
 
     def score(self):
         return logic.score(self.matrix)
+    
+    def isGameOver(self):
+        if logic.game_state(game.matrix) == 'lose':
+            return True
+        else:
+            return False
 
 game = Game()
 game.print_matrix()
-while(logic.game_state(game.matrix) != 'lose'):
+while not game.isGameOver():
     move = input()
     if (move == "w"):
         game.take_action(1)
