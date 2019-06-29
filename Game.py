@@ -7,6 +7,10 @@ class Game():
                          2: logic.down,
                          3: logic.left, 
                          4: logic.right}
+        self.moves_dict = {1: "w", 
+                           2: "s",
+                           3: "a", 
+                           4: "d"}
         self.init_matrix()
 
     def gen(self):
@@ -44,28 +48,12 @@ class Game():
         return logic.score(self.matrix)
     
     def isGameOver(self):
-        if logic.game_state(game.matrix) == 'lose':
+        if logic.game_state(self.matrix) == 'lose':
             return True
         else:
             return False
 
     def possible_moves(self):
         return logic.possible_actions(self.matrix)
-        
-game = Game()
-game.print_matrix()
-while not game.isGameOver():
-    move = input()
-    if (move == "w"):
-        game.take_action(1)
-    if (move == "s"):
-        game.take_action(2)
-    if (move == "a"):
-        game.take_action(3)
-    if (move == "d"):
-        game.take_action(4)
-    #moves = logic.possible_actions(game.matrix)
-    #action = random.randint(0, len(moves)-1)
-    #game.take_action(moves[action])
-    game.print_matrix()
-print(game.score())
+  
+    
