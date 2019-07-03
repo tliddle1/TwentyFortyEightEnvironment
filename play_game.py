@@ -12,7 +12,7 @@ agent = Agent()
 game.print_matrix()
 while not game.isGameOver():
     moves = logic.possible_actions(game.matrix) # Get all possible actions
-    move = agent.take_action(moves, game.moves_dict)
+    move = agent.take_action(moves, game.moves_dict, game.matrix)
     print(move)
     if (move == "w"):
         game.take_action(1)
