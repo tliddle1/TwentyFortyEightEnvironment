@@ -153,6 +153,7 @@ class Agent:
     def random_simulation(self, start_state):
         game = Game()
         game.matrix = start_state
+
         while not game.isGameOver():
             moves = logic.possible_actions(game.matrix) # Get all possible actions
             move = self.take_action(moves, game.moves_dict) # Not including the game state gives a random move
