@@ -109,7 +109,7 @@ class Agent:
 #                if self.memory[s][action]["N"] == 0
 #                self.memory[s][action]["P"] = self.memory[s][action]["N"] / total_N
     
-    def MCTS(self, start_state, N=50, deterministic=True):
+    def MCTS(self, start_state, N=1000, deterministic=True):
         game = Game()
         game.matrix = start_state
         self.memory = dict()
