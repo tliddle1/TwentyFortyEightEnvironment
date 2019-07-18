@@ -26,6 +26,13 @@ def add_four(mat):
     mat[a][b] = 4
     return mat
 
+def add_tile(mat):
+    chance = random.randint(1,10)
+    if chance == 1:
+        add_four(mat)
+    else:
+        add_two(mat)
+
 def score(mat):
     """returns the current score of the game given the current matrix"""
     score = 0
