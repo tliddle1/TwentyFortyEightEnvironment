@@ -19,8 +19,8 @@ class Game():
     def init_matrix(self):
         self.matrix = logic.new_game(4)
         self.history_matrixs = list()
-        self.matrix = logic.add_two(self.matrix)
-        self.matrix = logic.add_two(self.matrix)
+        self.matrix = logic.add_tile(self.matrix)
+        self.matrix = logic.add_tile(self.matrix)
         
 
     def print_matrix(self):
@@ -34,7 +34,7 @@ class Game():
         if action_number in self.commands:
             self.matrix, done = self.commands[action_number](self.matrix)
         if done:    
-            self.matrix = logic.add_two(self.matrix)
+            self.matrix = logic.add_tile(self.matrix)
                 # record last move
             self.history_matrixs.append(self.matrix)
 
