@@ -8,12 +8,13 @@ import logic
 import numpy as np
 
 
-game = Game()
+
 agent = Agent()
 game.print_matrix()
 
 scores = []
 for _ in range(100):
+    game = Game()
     num_moves = 0
     while not game.isGameOver():
         num_moves = num_moves + 1
