@@ -73,7 +73,7 @@ class Agent:
 #                print(game.matrix)
 #                input()
                 vs=[]
-                for _ in range(10):
+                for _ in range(1):
                     vs.append(self.random_simulation(game.matrix))  # Gets score for random simulation to estimate value of state
                 v = np.mean(vs)
                 self.memory[s] = dict()
@@ -94,7 +94,7 @@ class Agent:
         for action in starting_memory.keys():
 #            print("Updated", action)
             self.scale += starting_memory[action]["W"]
-        self.scale = 10 * self.scale / (sim_num + 1)
+        self.scale = 4 * self.scale / (sim_num + 1)
         for i, (s, a) in enumerate(self.history):
 #            print("Updating history:", s, a)
 #            input()
@@ -115,7 +115,7 @@ class Agent:
         self.memory = dict()
 
         for sim_num in range(N):
-            if sim_num % 10 == 0:
+            if sim_num % 100 == 0:
                 print(sim_num)
             self.history = []
             game.matrix = start_state # Resets our game back to the original starting spot
