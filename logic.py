@@ -29,7 +29,7 @@ def add_four(mat):
 def add_tile(mat):
     chance = random.randint(1,10)
     if chance == 1:
-        return add_four(mat)
+        return add_four(mat)    
     else:
         return add_two(mat)
 
