@@ -14,7 +14,6 @@ game.print_matrix()
 
 
 while not game.isGameOver():
-    num_moves = num_moves + 1
     moves = logic.possible_actions(game.matrix) # Get all possible actions
     move = agent.take_action(moves, game.moves_dict, game.matrix)
     print(move)

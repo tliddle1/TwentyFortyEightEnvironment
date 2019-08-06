@@ -29,7 +29,7 @@ class Agent:
 
     def select(self, start_state, game):
         curr_state = start_state
-        start = True
+#        start = True
         while True:
             possible_actions = logic.possible_actions(curr_state)  # Get all possible actions. These are numbers
             s = tuple(tuple(x) for x in curr_state)
@@ -74,7 +74,7 @@ class Agent:
 #                input()
                 vs=[]
                 for _ in range(1):
-                    vs.append(self.random_simulation(game.matrix))  # Gets score for random simulation to estimate value of state
+                    vs.append(self.random_simulation(game.matrix))  # Gets score for random simulation to estimate value of state (use nn)
                 v = np.mean(vs)
                 self.memory[s] = dict()
                 len_possible = len(possible_actions)
