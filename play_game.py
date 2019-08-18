@@ -30,5 +30,5 @@ while not game.isGameOver():
     #action = random.randint(0, len(moves)-1)
     #game.take_action(moves[action])
     game.print_matrix()
-
+agent.update_final_score(game.score())
 print(game.score())

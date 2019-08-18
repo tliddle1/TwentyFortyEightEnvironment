@@ -2,6 +2,16 @@
 from Game import Game
 import numpy as np
 import logic
+import json
+
+""" class Data:
+    def __init__(self, state, action_probabilities=[], score=0):
+        self.state = state
+        self.action_probabilities = action_probabilities
+        self.score = score
+
+    def set_score(self, score):
+        self.score = score """
 
 class Agent:
     """
@@ -11,6 +21,8 @@ class Agent:
         self.agent_type = agent_type
         self.scale = 1.0
         self.game_end = False
+        #Database for storing states and probabilities
+        self.database = [] 
         
     def take_action(self, moves, moves_dict, game_state=None):
         if self.agent_type == "human":
@@ -109,12 +121,12 @@ class Agent:
 #                if self.memory[s][action]["N"] == 0
 #                self.memory[s][action]["P"] = self.memory[s][action]["N"] / total_N
     
-    def MCTS(self, start_state, N=1000, deterministic=True):
+    def MCTS(self, start_state, NNN=1000, deterministic=True): #Changed symbol for N
         game = Game()
         game.matrix = start_state
         self.memory = dict()
 
-        for sim_num in range(N):
+        for sim_num in range(NNN):
             if sim_num % 100 == 0:
                 print(sim_num)
             self.history = []
@@ -126,15 +138,23 @@ class Agent:
         starting_tuple = tuple(tuple(x) for x in start_state)
         possible_actions = logic.possible_actions(start_state) # Get all possible actions. These are numbers
         options = []
+        p_array = []
         print("After Monte Carlo Tree Search, options are:")
         for a in possible_actions:
             P, W, N = self.memory[starting_tuple][a]["P"], self.memory[starting_tuple][a]["W"], self.memory[starting_tuple][a]["N"]
+            P = N/NNN #Calculate probability
+            p_array.append(P)
             print("{0}: P={1}, W={2}, N={3}".format(game.moves_dict[a], str(P), str(W), str(N)))
             if deterministic:
                 options.append(N)
             else:
                 options.append(P)
-         
+        data = {
+            "start_state": start_state,
+            "probabilities": p_array,
+            "score": 0
+        }
+        self.database.append(data) # Adds data for states and probabilities to temp database
         if deterministic:
             choice = possible_actions[np.argmax(options)]
             print()
@@ -169,14 +189,9 @@ class Agent:
                 break
         return game.score()
         
-                    
-                    
-                
-                        
-                
-                
-                
-        
-        
-        
-
+    def update_final_score(self, score):
+        for i in range(len(self.database)):
+            self.database[i]["score"] = score
+            #print(self.database[i])
+        with open('data.txt', 'w') as outfile:
+            json.dump(self.database, outfile)
