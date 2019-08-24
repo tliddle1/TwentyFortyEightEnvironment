@@ -12,9 +12,9 @@ from networks import NN_2048
 parser = argparse.ArgumentParser(description='Agent parser')
 parser.add_argument('--disable-cuda', action='store_false',
                     help='Disable CUDA')
-parser.add_argument('--activate_NN', action='store_false',
+parser.add_argument('--activate_NN', action='store_true',
                     help='Activate the nueral network in place of random simulations and uniform probabilities')
-parser.add_argument('--num_sims', type=int, default=2,
+parser.add_argument('--num_sims', type=int, default=1,
                     help='The number of simulations used to calculate the value of a state without nueral network')
 args = parser.parse_args()
 args.device = None
