@@ -258,8 +258,10 @@ class Agent:
         try:
             with sql.connect(database, detect_types=sql.PARSE_DECLTYPES) as conn:
                 cur = conn.cursor()
+                """
                 cur.execute(
                     "DROP TABLE IF EXISTS Memory")  # Creates new tables with specific column names
+                """
                 cur.execute(
                     "CREATE TABLE IF NOT EXISTS Memory (State ARRAY, Probabilites ARRAY, Score INTEGER, Game_Num INTEGER)")  # Creates new tables with specific column names
                 cur.executemany("INSERT INTO Memory VALUES(?,?,?,?);", self.game_data)  # Inserts data into each of the tables
